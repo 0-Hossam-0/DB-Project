@@ -1,4 +1,4 @@
-#  <span style="color:#6C63FF">Social Platform ERD Documentation</span>
+# <span style="color:#6C63FF">Social Platform ERD Documentation</span>
 
 This document describes the database structure (Entity Relationship Diagram) for a social platform that includes users, posts, comments, professional experience, projects, and chat messages.
 
@@ -136,6 +136,67 @@ This document describes the database structure (Entity Relationship Diagram) for
 
 ---
 
+## 🏢 <span style="color:#FF7043">7. Company Entity</span>
+
+**Table Name:** `companies`
+
+### **Attributes:**
+
+* **profile_image** – Company logo/profile image
+* **cover_image** – Header/cover image
+* **about** – Company description
+* **people (User)** – Employees linked to the company
+* **followers** – Number of followers
+
+### **Relationships:**
+
+* One-to-Many: Company → Jobs
+* One-to-Many: Company → Company Posts
+* Many-to-Many: Company ↔ Users (followers)
+
+---
+
+## 💼 <span style="color:#29B6F6">8. Job Entity</span>
+
+**Table Name:** `jobs`
+
+### **Attributes:**
+
+* **title** – Job title
+* **location_type** – Enum: `on_site`, `hybrid`, `remote`
+* **date** – Posting date
+* **applicants (User)** – Users who applied
+* **about** – Job overview/details
+* **work_status** – Enum: `fullTime`, `partTime`
+
+### **Relationships:**
+
+* Many-to-One: Job → Company
+* Many-to-Many: Job ↔ Users (applicants)
+
+---
+
+## 🏙️ <span style="color:#7E57C2">9. Company Posts Entity</span>
+
+**Table Name:** `company_posts`
+
+### **Attributes:**
+
+* **company_id** – References `companies.id`
+* **content** – Post content
+* **files (post_files)** – Media attachments
+* **comments** – Total comments
+* **reaction** – Reaction count
+* **date** – Post date
+* **modified_status** – Edited or not
+
+### **Relationships:**
+
+* Many-to-One: Company Post → Company
+* One-to-Many: Company Post → Comments
+
+---
+
 ## 🗂️ <span style="color:#8D6E63">ERD Overview Summary</span>
 
 * **Users** create **posts**, write **comments**, add **experience**, work on **projects**, and participate in **chats**.
@@ -147,3 +208,97 @@ This document describes the database structure (Entity Relationship Diagram) for
 
 If you want, I can also generate the ERD diagram image or turn this into a more styled README with badges and sections.
 
+---
+
+## 📘 <span style="color:#009688">Datatype Reference for All Attributes</span>
+
+### **User**
+
+* username *(string)*
+* title *(string)*
+* address *(string)*
+* profile_image *(string/URL)*
+* cover_image *(string/URL)*
+* connections *(integer)*
+* about *(text)*
+* languages *(JSON array/string)*
+* verification_status *(boolean/enum)*
+* email_address *(string)*
+* password *(string hashed)*
+* role *(enum)*
+* last_active_date *(datetime)*
+
+### **Post**
+
+* user_id *(foreign key)*
+* content *(text)*
+* files *(JSON array)*
+* comments *(integer)*
+* reaction *(integer)*
+* date *(datetime)*
+* modified_status *(boolean)*
+
+### **Comments**
+
+* user_id *(foreign key)*
+* body *(text)*
+* reaction *(enum)*
+* date *(datetime)*
+* modified_status *(boolean)*
+
+### **Experience**
+
+* image *(string/URL)*
+* title *(string)*
+* sub_title *(string)*
+* start_date *(date)*
+* end_date *(date nullable)*
+* address *(string)*
+* skills_id *(foreign key nullable)*
+* location_type *(enum)*
+* description *(text)*
+* files *(JSON array nullable)*
+
+### **Projects**
+
+* project_name *(string)*
+* provider *(string)*
+* description *(text)*
+* skills *(JSON array)*
+* files *(JSON array)*
+* date *(datetime)*
+
+### **Chat**
+
+* chat_id *(integer)*
+* message *(text)*
+* date *(datetime)*
+* modify_state *(boolean)*
+* user_id *(foreign key via pivot)*
+
+### **Company**
+
+* profile_image *(string/URL)*
+* cover_image *(string/URL)*
+* about *(text)*
+* people *(many-to-many)*
+* followers *(integer)*
+
+### **Job**
+
+* title *(string)*
+* location_type *(enum)*
+* date *(datetime)*
+* applicants *(many-to-many)*
+* about *(text)*
+* work_status *(enum)*
+
+### **Company Posts**
+
+* company_id *(foreign key)*
+* content *(text)*
+* files *(JSON array)*
+* comments *(integer)*
+* reaction *(integer)*
+* date *(datetime)*
+* modified_status *(boolean)*
