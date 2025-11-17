@@ -320,7 +320,7 @@ Below is the fair distribution of ERD design work among all 5 team members.
 
 ---
 
-## **5. Mohaned — Chat System & Global Enums**
+## **5. Mohaned — Chat System**
 
 ### **Entities Assigned (21–25)**
 
