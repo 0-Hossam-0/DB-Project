@@ -1,4 +1,4 @@
-#  <span style="color:#6C63FF">Social Platform ERD Documentatio</span>
+# <span style="color:#6C63FF">Social Platform ERD Documentation </span>
 
 
 ---
@@ -20,7 +20,8 @@
 * **verification_status** *(enum)*
 * **email_address** *(string)*
 * **password** *(string hashed)*
-* **role** *(enum: employee, employer)*
+* **role** *(employee, employer)*
+* **skills**: array of Skill IDs (e.g., [1, 4, 7])** *(enum: employee, employer)*
 * **last_active_date** *(datetime)*
 
 ### **Relationships:**
@@ -48,7 +49,7 @@
 
 # 📝 <span style="color:#4ECDC4">2. Posts</span>
 
-**Table Name:** `user_posts`
+**Table Name:** `posts`
 
 ### **Attributes:**
 
@@ -205,7 +206,14 @@
 
 ---
 
-# 📢 <span style="color:#7E57C2">8. Company Posts</span>
+# 📢 <span style="color:#7E57C2">8. Skills**
+
+* id *(integer primary key)*
+* name *(string)*
+* category *(string optional)*
+* description *(text optional)*
+
+### **Company Posts**</span>
 
 **Table Name:** `company_posts`
 
@@ -255,3 +263,69 @@
 * Supports scalable search, messaging, professional graphs, jobs & companies
 
 ---
+
+If you'd like, I can generate a **visual ERD diagram image**, **SQL schema**, or **Laravel migration files**.
+
+---
+
+# 👥 **Team ERD Responsibilities (Numbered Entities Assignment)**
+
+Below is the fair distribution of ERD design work among all 5 team members.
+
+## **1. Hossam — User & Skills Module**
+
+### **Entities Assigned (1–4)**
+
+1. **User**
+2. **Skills**
+3. **User_Skills (pivot)**
+4. **Connections (User-to-User relation)** (User-to-User relation)
+
+---
+
+## **2. Yousif — Posts & Comments Module**
+
+### **Entities Assigned (5–9)**
+
+5. **Post**
+6. **Post_Files**
+7. **Comments**
+8. **Reactions**
+9. **Comment_Reactions (if separate)** (if separate)
+
+---
+
+## **3. Daniel — Experience & Projects Module**
+
+### **Entities Assigned (10–14)**
+
+10. **Experience**
+11. **Experience_Files**
+12. **Projects**
+13. **Project_Files**
+14. **Skills_Used (optional)** (optional for project/experience)
+
+---
+
+## **4. Kareem — Company & Jobs Module**
+
+### **Entities Assigned (15–20)**
+
+15. **Company**
+16. **Company_Followers**
+17. **People_In_Company (pivot)**
+18. **Company_Posts**
+19. **Job**
+20. **Applicants (User–Job pivot)** (User–Job pivot)
+
+---
+
+## **5. Mohaned — Chat System & Global Enums**
+
+### **Entities Assigned (21–25)**
+
+21. **Chat**
+22. **Chat_Messages**
+23. **Chat_Participants (pivot)**
+24. **location_type (enum)**
+25. **work_status (enum)**
