@@ -1,4 +1,4 @@
-# 🌈 <span style="color:#6C63FF">Social Platform ERD Documentation (Corrected & LinkedIn‑Style)</span>
+#  <span style="color:#6C63FF">Social Platform ERD Documentation (Corrected & LinkedIn‑Style)</span>
 
 This document provides a **corrected, scalable, LinkedIn‑style ERD**, fixing structural issues such as missing primary keys, improper many‑to‑many design, and unnormalized fields.
 
@@ -49,7 +49,7 @@ This document provides a **corrected, scalable, LinkedIn‑style ERD**, fixing s
 
 # 📝 <span style="color:#4ECDC4">2. Posts</span>
 
-**Table Name:** `posts`
+**Table Name:** `user_posts`
 
 ### **Attributes:**
 
