@@ -1,6 +1,5 @@
 #  <span style="color:#6C63FF">Social Platform ERD Documentation (Corrected & LinkedIn‑Style)</span>
 
-This document provides a **corrected, scalable, LinkedIn‑style ERD**, fixing structural issues such as missing primary keys, improper many‑to‑many design, and unnormalized fields.
 
 ---
 
