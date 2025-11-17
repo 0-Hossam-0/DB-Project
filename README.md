@@ -1,4 +1,4 @@
-#  <span style="color:#6C63FF">Social Platform ERD Documentation (Corrected & LinkedIn‑Style)</span>
+#  <span style="color:#6C63FF">Social Platform ERD Documentatio</span>
 
 
 ---
