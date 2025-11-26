@@ -11,91 +11,88 @@ create table User_Post(
 post_id int AUTO_INCREMENT primary key,
 body varchar(3000) not null check(body >= 50),
 created_at DATETIME not null default now(), # datetime bdl date 34n betstore time kman
-modified_at DATETIME default now(),
-modified_status boolean default false,
-deletion_status boolean default false,
 user_id int not null, 
 FOREIGN  KEY (user_id) REFERENCES Users(user_id)
 );
 
-create table Comments(
-comment_id int AUTO_INCREMENT primary key,
-body varchar(3000) not null check(body > 0),
-created_at DATETIME not null default now(),
-modified_at DATETIME default now(), 
-modified_status boolean default false,
-deletion_status boolean default false,
-user_id int not null,
-post_id int not null,
-FOREIGN  KEY (user_id) REFERENCES Users(user_id), # kda hn3rf anhy user 3ml anhy comment
-FOREIGN  KEY (post_id) REFERENCES User_Post(post_id)
-);
+INSERT INTO Users (user_id) VALUES (2);
+INSERT INTO Users (user_id) VALUES (3);
+INSERT INTO Users (user_id) VALUES (4);
+INSERT INTO Users (user_id) VALUES (5);
+INSERT INTO Users (user_id) VALUES (6);
+INSERT INTO Users (user_id) VALUES (7);
+INSERT INTO Users (user_id) VALUES (8);
+INSERT INTO Users (user_id) VALUES (9);
+INSERT INTO Users (user_id) VALUES (10);
+INSERT INTO Users (user_id) VALUES (11);
+INSERT INTO Users (user_id) VALUES (12);
+INSERT INTO Users (user_id) VALUES (13);
+INSERT INTO Users (user_id) VALUES (14);
+INSERT INTO Users (user_id) VALUES (15);
 
-create table Reaction(
-reaction_id int AUTO_INCREMENT primary key,
-reaction_type ENUM('like', 'love', 'insightful', 'funny'), # 34n est5dmt ENUM me4 m7tag CHECK eno ya da ya da ya da
-deletion_status boolean default false,
-created_at DATETIME default now(),
-modified_at DATETIME default now(), 
-user_id int not null,
-post_id int not null,
-FOREIGN  KEY (user_id) REFERENCES Users(user_id),
-FOREIGN  KEY (post_id) REFERENCES User_Post(post_id),
-UNIQUE KEY unique_user_post (user_id, post_id) # 34n el user my3rf4 y3ml 8yr reaction wa7ed bs 3la le post el wa7ed
-);
+INSERT INTO User_Post (body, created_at, user_id)
+VALUES ('Hello world!', NOW(), 2);
 
+INSERT INTO User_Post (body, created_at, user_id)
+VALUES ('Just finished my project!', '2025-01-19 14:32:00', 3);
 
-create table Post_Files(
-file_id int AUTO_INCREMENT primary key,
-attachment varchar(500) not null,
-post_id int not null,
-FOREIGN  KEY (post_id) REFERENCES User_Post(post_id)
-);
+INSERT INTO User_Post (body, created_at, user_id)
+VALUES ('Good morning everyone!', '2025-01-18 08:10:00', 4);
 
-INSERT INTO Users (user_id) VALUES (1);
+INSERT INTO User_Post (body, created_at, user_id)
+VALUES ('Studying SQL today.', '2025-01-17 11:00:00', 5);
 
-INSERT INTO User_Post (body, created_at, modified_at, modified_status, deletion_status, user_id)
-VALUES ('Hello world!', NOW(), NOW(), FALSE, FALSE, 1);
+INSERT INTO User_Post (body, created_at, user_id)
+VALUES ('Modified my project again.', '2025-01-16 16:20:00', 6);
+
+INSERT INTO User_Post (body, created_at, user_id)
+VALUES ('This post was deleted earlier.', '2025-01-15 09:00:00', 7);
+
+INSERT INTO User_Post (body, created_at, user_id)
+VALUES ('First post of the day!', '2025-01-14 07:30:00', 8);
+
+INSERT INTO User_Post (body, created_at, user_id)
+VALUES ('Learning MySQL Workbench.', '2025-01-13 18:00:00', 9);
+
+INSERT INTO User_Post (body, created_at, user_id)
+VALUES ('Anyone online?', '2025-01-12 22:40:00', 10);
+
+INSERT INTO User_Post (body, created_at, user_id)
+VALUES ('Had a great day today!', '2025-01-11 20:00:00', 11);
+
+INSERT INTO User_Post (body, created_at, user_id)
+VALUES ('Working on a new app.', '2025-01-10 15:30:00', 12);
+
+INSERT INTO User_Post (body, created_at, user_id)
+VALUES ('Trying new features.', '2025-01-09 10:00:00', 13);
+
+INSERT INTO User_Post (body, created_at, user_id)
+VALUES ('Does anyone know joins?', '2025-01-08 13:45:00', 14);
+
+INSERT INTO User_Post (body, created_at, user_id)
+VALUES ('I love databases!', '2025-01-07 09:20:00', 15);
+
 select * from User_post;
 
-INSERT INTO Comments (body, created_at, modified_at, modified_status, deletion_status, user_id, post_id)
-VALUES ('Nice post!', NOW(), NOW(), FALSE, FALSE, 1, 1);
-select * from Comments;
-
-INSERT INTO Reaction (reaction_type, deletion_status, created_at, modified_at, user_id, post_id)
-VALUES ('like', FALSE, NOW(), NOW(), 1, 1);
-select * from Reaction;
-
-INSERT INTO Post_Files (attachment, post_id)
-VALUES ('uploads/file1.pdf', 1);
-select * from Post_Files;
-
-delete from User_Post where post_id = 1;
+delete from User_Post where post_id = 4;
 select * from User_Post;
 
 UPDATE User_Post
 SET body = 'This is the updated post content'
-WHERE post_id = 1;
+WHERE post_id = 5;
 select * from User_Post;
 
-ALTER TABLE Post_Files
-modify column attachment varchar(500),
+ALTER TABLE User_Post
+modify column body varchar(3000),
 ADD COLUMN size VARCHAR(255);
-select * from Post_Files;
+select * from User_Post;
 
-ALTER TABLE Post_Files
+ALTER TABLE User_Post
 DROP COLUMN size; # 3mlt drop fe alter gdyda 34n me4 byrda y3mlo fe nfs el alter statment add o drop
-select * from Post_Files;
+select * from User_Post;
 
 SELECT * FROM User_Post # bygyb kol postat user be id = 1
 WHERE user_id = 1;
-
-SELECT * FROM Reactions # bygyb kol el reactions be 'love'
-WHERE reaction_type = 'love';
-
-SELECT u.user_id, p.post_id, p.body # bygyb kol el postat be myn el n4rhom
-FROM User_Post p
-JOIN Users u ON p.user_id = u.user_id;
 
 SELECT * FROM User_Post # bygyb kol el postat el fyha klmet "hello"
 WHERE body LIKE '%hello%';
