@@ -3,32 +3,32 @@ CREATE DATABASE Youssef;
 USE Youssef;
 
 CREATE TABLE Users (
-    user_id INT PRIMARY KEY
+   user_id int AUTO_INCREMENT primary key
 );
 select * from Users;
 
 create table User_Post(
 post_id int AUTO_INCREMENT primary key,
-body varchar(3000) not null check(body >= 50),
+body varchar(3000) not null,
 created_at DATETIME not null default now(), # datetime bdl date 34n betstore time kman
 user_id int not null, 
 FOREIGN  KEY (user_id) REFERENCES Users(user_id)
 );
 
-INSERT INTO Users (user_id) VALUES (2);
-INSERT INTO Users (user_id) VALUES (3);
-INSERT INTO Users (user_id) VALUES (4);
-INSERT INTO Users (user_id) VALUES (5);
-INSERT INTO Users (user_id) VALUES (6);
-INSERT INTO Users (user_id) VALUES (7);
-INSERT INTO Users (user_id) VALUES (8);
-INSERT INTO Users (user_id) VALUES (9);
-INSERT INTO Users (user_id) VALUES (10);
-INSERT INTO Users (user_id) VALUES (11);
-INSERT INTO Users (user_id) VALUES (12);
-INSERT INTO Users (user_id) VALUES (13);
-INSERT INTO Users (user_id) VALUES (14);
-INSERT INTO Users (user_id) VALUES (15);
+INSERT INTO Users  VALUES ();
+INSERT INTO Users  VALUES ();
+INSERT INTO Users  VALUES ();
+INSERT INTO Users  VALUES ();
+INSERT INTO Users  VALUES ();
+INSERT INTO Users  VALUES ();
+INSERT INTO Users  VALUES ();
+INSERT INTO Users  VALUES ();
+INSERT INTO Users  VALUES ();
+INSERT INTO Users  VALUES ();
+INSERT INTO Users  VALUES ();
+INSERT INTO Users  VALUES ();
+INSERT INTO Users VALUES ();
+INSERT INTO Users  VALUES ();
 
 INSERT INTO User_Post (body, created_at, user_id)
 VALUES ('Hello world!', NOW(), 2);
@@ -92,7 +92,7 @@ DROP COLUMN size; # 3mlt drop fe alter gdyda 34n me4 byrda y3mlo fe nfs el alter
 select * from User_Post;
 
 SELECT * FROM User_Post # bygyb kol postat user be id = 1
-WHERE user_id = 1;
+WHERE user_id = 2;
 
 SELECT * FROM User_Post # bygyb kol el postat el fyha klmet "hello"
 WHERE body LIKE '%hello%';
