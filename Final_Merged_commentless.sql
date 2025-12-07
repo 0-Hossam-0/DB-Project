@@ -4,24 +4,23 @@ USE CareerIn;
 
 -- Hossam -- (Users)
 
-CREATE TABLE Users ( -- 4elt kam hga zyda 3n el shcema
+CREATE TABLE Users ( 
     user_id INT PRIMARY KEY auto_increment,
-    title VARCHAR(50) NOT NULL, -- added " NOT NULL"
+    title VARCHAR(50) NOT NULL,
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
     email_address VARCHAR(100) NOT NULL UNIQUE,
-    password_hash VARCHAR(255) NOT NULL, -- leh "hash" ? : 34n keyword
+    password_hash VARCHAR(255) NOT NULL, 
     city VARCHAR(50),
     country VARCHAR(50)
 );
 
-CREATE TABLE Skills ( -- "skills" bdl "skill"
+CREATE TABLE Skills ( 
     skill_id INT PRIMARY KEY AUTO_INCREMENT,
-    skill_name VARCHAR(50) NOT NULL, -- from "name" to "skill name" 34n name keyword
+    skill_name VARCHAR(50) NOT NULL,
     user_id INT NOT NULL,
     CONSTRAINT fk_skill_user FOREIGN KEY (user_id) REFERENCES Users (user_id) 
     ON DELETE CASCADE
-    -- added " ON DELETE CASCADE" 34n lw mfy4 users 3yz el skills yet4al
 );
 
 INSERT INTO Users (title, first_name, last_name, email_address, password_hash, city, country)
@@ -78,18 +77,18 @@ CREATE TABLE IF NOT EXISTS Company (
 );
 
 CREATE TABLE IF NOT EXISTS Job (
-	job_number INT NOT NULL, -- el partial key
-    company_id INT NOT NULL, -- Column must be defined before adding FK constraint
+	job_number INT NOT NULL, 
+    company_id INT NOT NULL,
     title VARCHAR(50) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (company_id, job_number), -- 34n n3rf el weak entity bn3ml el partial + el forgien bt3 el owner
+    PRIMARY KEY (company_id, job_number), 
     FOREIGN KEY (company_id) 
         REFERENCES Company(company_id) 
         ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS Followers( -- "followers" added an 's'
-  follower_id INT PRIMARY KEY AUTO_INCREMENT, -- added "follower_id" 34n da me4 weak entity
+CREATE TABLE IF NOT EXISTS Followers( 
+  follower_id INT PRIMARY KEY AUTO_INCREMENT, 
   user_id INT NOT NULL,
   company_id INT NOT NULL,
     FOREIGN KEY (company_id) 
@@ -228,8 +227,6 @@ WHERE user_id = 1;
 
 -- Daniel/Mohaned -- (Projects, Excperience)
 
-# Modify the structure of one table. -- hwa fyn el table asln ?!
-
 CREATE TABLE IF NOT EXISTS 	Projects (
     user_id INT NOT NULL, 
 	project_number INT NOT NULL, 
@@ -323,7 +320,7 @@ select user_id From Experience Where start_date Like '%2025%';
 create table User_Post(
 post_id int AUTO_INCREMENT primary key,
 body varchar(3000) not null,
-created_at DATETIME not null default now(), # datetime bdl date 34n betstore time kman
+created_at DATETIME not null default now(), 
 user_id int not null, 
 FOREIGN  KEY (user_id) REFERENCES Users(user_id)
 );
@@ -386,13 +383,13 @@ ADD COLUMN size VARCHAR(255);
 select * from User_Post;
 
 ALTER TABLE User_Post
-DROP COLUMN size; # 3mlt drop fe alter gdyda 34n me4 byrda y3mlo fe nfs el alter statment add o drop
+DROP COLUMN size; 
 select * from User_Post;
 
-SELECT * FROM User_Post # bygyb kol postat user be id = 1
+SELECT * FROM User_Post 
 WHERE user_id = 2;
 
-SELECT * FROM User_Post # bygyb kol el postat el fyha klmet "hello"
+SELECT * FROM User_Post
 WHERE body LIKE '%hello%';
 
 -- Joins --
